@@ -2,8 +2,7 @@ package ru.scb.java_edu;
 
 public class MyFirstProgramm {
 
-  public static void main(String[] args)
-  {
-     System.out.println("Hello, world!");
-  }
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
 }
