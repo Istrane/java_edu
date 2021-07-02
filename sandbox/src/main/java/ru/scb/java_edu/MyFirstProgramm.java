@@ -1,3 +1,5 @@
+package ru.scb.java_edu;
+
 public class MyFirstProgramm {
 
   public static void main(String[] args)
