@@ -1,4 +1,4 @@
-package ru.scb.java_edu.addressbook;
+package ru.scb.java_edu.addressbook.model;
 
 public class GroupData {
     private final String groupName;
