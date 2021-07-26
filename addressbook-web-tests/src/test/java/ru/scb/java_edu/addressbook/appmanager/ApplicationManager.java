@@ -1,6 +1,5 @@
 package ru.scb.java_edu.addressbook.appmanager;
 
-import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -18,14 +17,13 @@ public class ApplicationManager {
     private StringBuffer verificationErrors = new StringBuffer();
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "E://ChroinmeDriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "E://ChromeDriver/chromedriver.exe");
         driver = new ChromeDriver();
-        baseUrl = "https://www.google.com/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        sessionHelper.AdressBookLogin("admin", "secret");
         driver.get("http://localhost/addressbook/group.php");
-        sessionHelper = new SessionHelper(driver);
         groupHelper = new GroupHelper(driver);
+        sessionHelper = new SessionHelper(driver);
+        sessionHelper.AdressBookLogin("admin", "secret");
         navigationHelper = new NavigationHelper(driver);
     }
 
@@ -37,20 +35,6 @@ public class ApplicationManager {
         }
     }
 
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
@@ -59,4 +43,5 @@ public class ApplicationManager {
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
     }
+
 }
