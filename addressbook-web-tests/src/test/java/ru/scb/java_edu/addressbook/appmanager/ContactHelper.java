@@ -11,10 +11,11 @@ public class ContactHelper extends HelperBase {
         super(driver);
     }
 
-
     public void submitContactCreation() {
         click(By.name("submit"));
     }
+
+    public void submitContactModification() {click(By.name("update"));}
 
     public void fillContactForm(ContactData contactData) {
         type(By.name("firstname"), contactData.getFirstName());
@@ -39,6 +40,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("notes"), contactData.getNotes());
     }
 
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedContact() { click(By.xpath(("//input[@value='Delete']")));}
+
     public void initBirthDay(String day, String month) {
         click(By.name("bday"));
         new Select(driver.findElement(By.name("bday"))).selectByVisibleText(day);
@@ -59,4 +66,12 @@ public class ContactHelper extends HelperBase {
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
+
+    public void initContactModification() {
+        click(By.xpath("//img[@alt='Edit']")); }
+
+    public void AcceptAllert() {
+        driver.switchTo().alert().accept();
+    }
+
 }
