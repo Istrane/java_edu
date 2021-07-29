@@ -2,6 +2,7 @@ package ru.scb.java_edu.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
     protected ChromeDriver driver;
