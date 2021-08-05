@@ -1,13 +1,14 @@
 package ru.scb.java_edu.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.scb.java_edu.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper(ChromeDriver driver) {
+    public ContactHelper(WebDriver driver) {
         super(driver);
     }
 

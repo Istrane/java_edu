@@ -1,6 +1,10 @@
 package ru.scb.java_edu.addressbook.appmanager;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +12,8 @@ import static org.testng.Assert.fail;
 
 
 public class ApplicationManager {
-    ChromeDriver driver;
+
+    WebDriver driver;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
@@ -16,10 +21,23 @@ public class ApplicationManager {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
+
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "E://ChromeDriver/chromedriver.exe");
-        driver = new ChromeDriver();
+        if (browser == BrowserType.CHROME) {
+            System.setProperty("webdriver.chrome.driver", "E://ChromeDriver/chromedriver.exe");
+            driver = new ChromeDriver();
+        } else if (browser == BrowserType.FIREFOX) {
+            driver = new FirefoxDriver();
+        } else if (browser == BrowserType.IE) {
+            driver = new InternetExplorerDriver();
+        }
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("http://localhost/addressbook/group.php");
         groupHelper = new GroupHelper(driver);
@@ -46,6 +64,8 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public ContactHelper getContactHelper() {return contactHelper;}
+    public ContactHelper getContactHelper() {
+        return contactHelper;
+    }
 
 }
